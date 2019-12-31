@@ -9,6 +9,7 @@ function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, p
     }
 
     return knex({
+        client: 'pg',
         connection: {
             host: process.env.DB_HOST || 'localhost',
             database: dbName,
@@ -26,7 +27,7 @@ async function run() {
         settings = await smConnector(process.env.SECRETS_MANAGER_ENDPOINT, process.env.SECRETS_MANAGER_SECRET_ID);
     }
 
-    const runner = setup(settings);
+    const runner = await setup(settings);
     switch (process.argv[2]) {
         case 'migrate':
             console.log('Starting migration process...');
@@ -44,6 +45,6 @@ function shouldUseAWSSecretsManager() {
 }
 
 run()
-    .then(() => console.log('Finished with success'))
+    .then(res => console.log('Finished with success', res))
     .catch(console.error)
     .then(process.exit);

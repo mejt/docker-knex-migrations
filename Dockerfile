@@ -2,14 +2,13 @@ FROM node:12-alpine
 
 WORKDIR /migrations
 
-COPY index.js index.js
-COPY smConnector.js smConnector.js
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY knexfile.js knexfile.js
+ADD package.json package.json
+ADD package-lock.json package-lock.json
 
-RUN cd /migrations
-RUN npm ci
+RUN cd /migrations && npm ci
+
+ADD index.js index.js
+ADD smConnector.js smConnector.js
 
 ENTRYPOINT ["/usr/local/bin/node", "index.js"]
 CMD ["migrate"]
