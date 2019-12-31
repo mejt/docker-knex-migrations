@@ -20,6 +20,7 @@ module.exports = async (endpoint, secretId) => {
             return JSON.parse(result.SecretString);
         }
     } catch (error) {
-        console.log(error);
+        console.error({ message: 'Error during trying get secrets', endpoint, secretId });
+        console.error({ message: error.message, code: error.code });
     }
 };
