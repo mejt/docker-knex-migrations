@@ -9,11 +9,10 @@ function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, p
     }
 
     return knex({
-        client: process.env.DB_CLIENT || 'pg',
         connection: {
             host: process.env.DB_HOST || 'localhost',
             database: dbName,
-            port: process.env.PORT || '5432',
+            port: process.env.DB_PORT || '5432',
             user: userName,
             password
         }
@@ -30,9 +29,11 @@ async function run() {
     const runner = setup(settings);
     switch (process.argv[2]) {
         case 'migrate':
-            return migrate(runner);
+            console.log('Starting migration process...');
+            return runner.migrate.latest();
         case 'rollback':
-            return rollback(runner);
+            console.log('Starting rollback process...');
+            return runner.migrate.rollback();
         default:
             throw new Error('Unknown action for migrations');
     }
@@ -40,16 +41,6 @@ async function run() {
 
 function shouldUseAWSSecretsManager() {
     return process.env.USE_SECRETS_MANAGER === 'true'
-}
-
-function migrate({ migrate }) {
-    console.log('Starting migration process...');
-    return migrate.latest();
-}
-
-function rollback({ migrate }) {
-    console.log('Starting rollback process...');
-    return migrate.rollback();
 }
 
 run()
