@@ -1,0 +1,19 @@
+{
+  "name": "knex-migrations",
+  "version": "1.0.0",
+  "description": "Migrations for DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.596.0",
+    "knex": "^0.19.5",
+    "pg": "^7.12.1"
+  },
+  "engines": {
+    "node": ">=10.14"
+  }
+}
