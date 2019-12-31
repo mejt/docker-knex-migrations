@@ -3,7 +3,7 @@
 const knex = require('knex');
 const smConnector = require('./smConnector');
 
-function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, password = process.env.DB_PASS }) {
+function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, password = process.env.DB_PASS, host = process.env.DB_HOST }) {
     if (!dbName || !userName || !password) {
         throw new Error('Configuration for DB is missing');
     }
@@ -11,7 +11,7 @@ function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, p
     return knex({
         client: 'pg',
         connection: {
-            host: process.env.DB_HOST || 'localhost',
+            host: host || 'localhost',
             database: dbName,
             port: process.env.DB_PORT || '5432',
             user: userName,

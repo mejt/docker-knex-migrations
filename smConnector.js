@@ -1,6 +1,14 @@
 'use strict';
 
-const { SecretsManager } = require('aws-sdk');
+const AWS = require('aws-sdk');
+
+if (!AWS.config.region) {
+    AWS.config.update({
+        region: process.env.REGION || 'eu-central-1'
+    });
+}
+
+const SecretsManager = AWS.SecretsManager;
 
 module.exports = async (endpoint, secretId) => {
     const secretsManager = new SecretsManager({ endpoint });
