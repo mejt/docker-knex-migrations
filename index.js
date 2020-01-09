@@ -3,7 +3,7 @@
 const knex = require('knex');
 const smConnector = require('./smConnector');
 
-function setup({ dbName = process.env.DB_NAME, userName = process.env.DB_USER, password = process.env.DB_PASS, host = process.env.DB_HOST }) {
+function setup(dbName, userName, password, host) {
     if (!dbName || !userName || !password) {
         throw new Error('Configuration for DB is missing');
     }
@@ -27,7 +27,13 @@ async function run() {
         settings = await smConnector(process.env.SECRETS_MANAGER_ENDPOINT, process.env.SECRETS_MANAGER_SECRET_ID);
     }
 
-    const runner = await setup(settings);
+    const runner = await setup(
+        settings.DB_NAME || process.env.DB_NAME,
+        settings.DB_USER || process.env.DB_USER,
+        settings.DB_PASS || process.env.DB_PASS,
+        settings.DB_HOST || process.env.DB_HOST
+    );
+
     switch (process.argv[2]) {
         case 'migrate':
             console.log('Starting migration process...');
