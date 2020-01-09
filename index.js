@@ -10,6 +10,7 @@ function setup(dbName, userName, password, host) {
 
     return knex({
         client: 'pg',
+        directory: '/migrations',
         connection: {
             host: host || 'localhost',
             database: dbName,
