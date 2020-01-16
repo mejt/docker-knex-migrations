@@ -42,6 +42,9 @@ async function run() {
         case 'rollback':
             console.log('Starting rollback process...');
             return runner.migrate.rollback();
+        case 'seed':
+            console.log('Seeding db...');
+            return runner.seed.run();
         default:
             throw new Error('Unknown action for migrations');
     }

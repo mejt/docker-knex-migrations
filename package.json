@@ -1,12 +1,13 @@
 {
   "name": "knex-migrations",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Migrations for DB",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "node index.js migrate",
-    "rollback": "node index.js rollback"
+    "rollback": "node index.js rollback",
+    "seed": "node index.js seed"
   },
   "author": "",
   "license": "ISC",
