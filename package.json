@@ -9,7 +9,7 @@
     "rollback": "node index.js rollback",
     "seed": "node index.js seed"
   },
-  "author": "",
+  "author": "Mateusz Książek",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.596.0",
