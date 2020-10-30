@@ -22,5 +22,6 @@ module.exports = async (endpoint, secretId) => {
     } catch (error) {
         console.error({ message: 'Error during trying get secrets', endpoint, secretId });
         console.error({ message: error.message, code: error.code });
+        process.exit(1);
     }
 };

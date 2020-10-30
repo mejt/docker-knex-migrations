@@ -56,5 +56,8 @@ function shouldUseAWSSecretsManager() {
 
 run()
     .then(res => console.log('Finished with success', res))
-    .catch(console.error)
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    })
     .then(process.exit);
