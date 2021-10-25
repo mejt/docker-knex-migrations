@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.596.0",
-    "knex": "^0.19.5",
+    "knex": "^0.95.11",
     "pg": "^7.12.1"
   },
   "engines": {
