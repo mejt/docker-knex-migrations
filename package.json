@@ -12,7 +12,7 @@
   "author": "Mateusz Książek",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.596.0",
+    "aws-sdk": "^2.814.0",
     "knex": "^0.95.11",
     "pg": "^7.12.1"
   },
